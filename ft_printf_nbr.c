@@ -1,42 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_uint.c                                   :+:      :+:    :+:   */
+/*   ft_printf_nbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 18:47:09 by mezhang           #+#    #+#             */
-/*   Updated: 2025/07/16 12:21:56 by mezhang          ###   ########.fr       */
+/*   Created: 2025/07/16 11:42:58 by mezhang           #+#    #+#             */
+/*   Updated: 2025/07/16 13:52:19 by mezhang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf_uint(unsigned int num)
+static char	*nbr_to_str(long num)
 {
+	static char	str[15];
 	size_t	i;
-	char	buffer[32];
 
 	i = 0;
+	if (num < 0)
+	{
+		ft_putchar_fd('-', 1);
+		num = -1 * num;
+	}
 	while (num > 0)
 	{
-		buffer[i] = num % 10 + '0';
+		str[i] = num % 10 + '0';
 		num = num / 10;
 		i++;
 	}
-	buffer[i] = '\0';
-	while (i > 0)
-	{
-		ft_putchar_fd(buffer[i - 1], 1);
-		i--;
-	}
-	return (ft_strlen(buffer));
+	str[i] = '\0';
+	return (str);
+}
+
+int	ft_printf_nbr(int n)
+{
+	long	num;
+	char	*str;
+	// int		len;
+
+	num = (long)n;
+	str = nbr_to_str(num);
+	ft_putstr_fd(str, 1);
+	if (n < 0)
+		return(ft_strlen(str) + 1);
+	return (ft_strlen(str));
 }
 
 /* int	main(void)
 {
-	int b = ft_printf_uint(-123456);
+	int	n = -2147483648LL; //-2147483648;
+	int	b;
+
+	b = ft_printf_nbr(n);
 	printf("\n%d", b);
-	printf("\n%u", -123456);
+	printf("\n%d", n);
+
 	return (0);
 } */

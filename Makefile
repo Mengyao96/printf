@@ -6,7 +6,7 @@
 #    By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/15 17:07:22 by mezhang           #+#    #+#              #
-#    Updated: 2025/07/15 18:06:48 by mezhang          ###   ########.fr        #
+#    Updated: 2025/07/16 13:41:29 by mezhang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,12 @@ CFLAGS = -Wall -Wextra -Werror -I./libft/
 
 SRCS = ft_printf.c \
 		ft_printf_hex.c \
+		ft_printf_nbr.c \
 		ft_printf_ptr.c \
+		ft_printf_str.c \
 		ft_printf_uint.c \
 
-OBJS = $(SRCS:.c = .o)
+OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 

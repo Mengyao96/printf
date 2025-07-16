@@ -6,13 +6,13 @@
 /*   By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 18:13:41 by mezhang           #+#    #+#             */
-/*   Updated: 2025/07/15 20:41:23 by mezhang          ###   ########.fr       */
+/*   Updated: 2025/07/16 13:24:56 by mezhang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	lower_hex(unsigned int num)
+static int	lower_hex(unsigned int num)
 {
 	char	*hex;
 	size_t	i;
@@ -32,9 +32,10 @@ void	lower_hex(unsigned int num)
 		ft_putchar_fd(buffer[i - 1], 1);
 		i--;
 	}
+	return (ft_strlen(buffer));
 }
 
-void	upper_hex(unsigned int num)
+static int	upper_hex(unsigned int num)
 {
 	char	*hex;
 	size_t	i;
@@ -54,19 +55,21 @@ void	upper_hex(unsigned int num)
 		ft_putchar_fd(buffer[i - 1], 1);
 		i--;
 	}
+	return (ft_strlen(buffer));
 }
 
-void	ft_printf_hex(unsigned int num, char c)
+int	ft_printf_hex(unsigned int num, char c)
 {
 	if (c == 'x')
-		lower_hex(num);
+		return(lower_hex(num));
 	else
-		upper_hex(num);
+		return(upper_hex(num));
 }
 
 /* int	main(void)
 {
-	ft_printf_hex(-255, 'X');
+	int	b = ft_printf_hex(-255, 'X');
+	printf("%d", b);
 	printf("\n%X", -255);
 	return (0);
 } */

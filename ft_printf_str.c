@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 16:59:28 by mezhang           #+#    #+#             */
-/*   Updated: 2025/07/16 13:36:55 by mezhang          ###   ########.fr       */
+/*   Created: 2025/07/16 11:24:16 by mezhang           #+#    #+#             */
+/*   Updated: 2025/07/16 14:24:23 by mezhang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-# include <stdarg.h>
-# include <stdint.h>
-# include <unistd.h>
+int	ft_printf_str(char *s)
+{
+	int	i;
 
-int		ft_printf(const char *content, ...);
-size_t	ft_strlen(const char *s);
+	if (!s)
+		return(write(1, "(null)", 6));
+	i = 0;
+	while (s[i] != '\0')
+		i += write(1, &s[i], 1);
+	return (i);
+}
 
-int		ft_printf_str(char *s);
-int		ft_printf_ptr(void *ptr);
-int		ft_printf_nbr(int n);
-int		ft_printf_uint(unsigned int num);
-int		ft_printf_hex(unsigned int num, char c);
+/* int	main(void)
+{
+	char	*z = "123456";
+	int	b = ft_printf_str(z);
 
-#endif
+	printf("\n%d", b);
+	printf("\n NULL%sNULL ", "123456");
+	return (0);
+} */
