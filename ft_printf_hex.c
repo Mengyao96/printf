@@ -6,7 +6,7 @@
 /*   By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 18:13:41 by mezhang           #+#    #+#             */
-/*   Updated: 2025/07/16 23:42:30 by mezhang          ###   ########.fr       */
+/*   Updated: 2025/07/16 23:58:30 by mezhang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,11 @@ static int	upper_hex(unsigned int num)
 	return (count);
 }
 
-int	ft_printf_hex(unsigned int num, char c)
+int	ft_printf_hex(int n, char c)
 {
-	if (num < 0)
-		num = 2 ^ 32 + num;
+	unsigned int	num;
+
+	num = (unsigned int)n;
 	if (c == 'x')
 		return (lower_hex(num));
 	else

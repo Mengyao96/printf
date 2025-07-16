@@ -6,7 +6,7 @@
 /*   By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 16:59:28 by mezhang           #+#    #+#             */
-/*   Updated: 2025/07/16 16:51:24 by mezhang          ###   ########.fr       */
+/*   Updated: 2025/07/16 23:57:39 by mezhang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int		ft_printf_str(char *s);
 int		ft_printf_ptr(void *ptr);
 int		ft_printf_nbr(int n);
 int		ft_printf_uint(unsigned int num);
-int		ft_printf_hex(unsigned int num, char c);
+int		ft_printf_hex(int num, char c);
 
 #endif
