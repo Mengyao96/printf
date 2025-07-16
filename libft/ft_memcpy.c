@@ -6,7 +6,7 @@
 /*   By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 13:01:10 by mezhang           #+#    #+#             */
-/*   Updated: 2025/07/11 12:19:42 by mezhang          ###   ########.fr       */
+/*   Updated: 2025/07/14 20:19:14 by mezhang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	const unsigned char	*ptr2;
 
 	i = 0;
-	if (!dst && !src && n >= 0)
+	if (!dst && !src)
 		return (NULL);
 	ptr1 = (unsigned char *)dst;
 	ptr2 = (const unsigned char *)src;

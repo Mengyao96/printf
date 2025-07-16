@@ -6,7 +6,7 @@
 /*   By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:24:16 by mezhang           #+#    #+#             */
-/*   Updated: 2025/07/16 14:24:23 by mezhang          ###   ########.fr       */
+/*   Updated: 2025/07/16 23:44:53 by mezhang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,24 @@ int	ft_printf_str(char *s)
 	int	i;
 
 	if (!s)
-		return(write(1, "(null)", 6));
+		return (write(1, "(null)", 6));
 	i = 0;
 	while (s[i] != '\0')
-		i += write(1, &s[i], 1);
+	{
+		if (write(1, &s[i], 1) < 0)
+			return (-1);
+		else
+			i++;
+	}
 	return (i);
 }
 
 /* int	main(void)
 {
-	char	*z = "123456";
+	char	*z = "some string with %s hehe";
 	int	b = ft_printf_str(z);
 
 	printf("\n%d", b);
-	printf("\n NULL%sNULL ", "123456");
+	printf("%s", "some string with %s hehe");
 	return (0);
 } */

@@ -6,25 +6,11 @@
 /*   By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 18:13:06 by mezhang           #+#    #+#             */
-/*   Updated: 2025/07/16 13:35:25 by mezhang          ###   ########.fr       */
+/*   Updated: 2025/07/16 23:41:52 by mezhang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-/* static int	in_set(char c)
-{
-	char	*set;
-
-	set = "cspdiuxX%";
-	while (*set)
-	{
-		if (*set == c)
-			return (1);
-		set++;
-	}
-	return (0);
-} */
 
 static int	output(va_list	ap, char c)
 {
@@ -33,22 +19,22 @@ static int	output(va_list	ap, char c)
 	if (c == 'c')
 	{
 		target = va_arg(ap, int);
-		return(write(1, &target, 1));
+		return (write(1, &target, 1));
 	}
 	else if (c == 's')
-		return(ft_printf_str(va_arg(ap, char *)));
+		return (ft_printf_str(va_arg(ap, char *)));
 	else if (c == 'p')
-		return(ft_printf_ptr(va_arg(ap, void *)));
+		return (ft_printf_ptr(va_arg(ap, void *)));
 	else if (c == 'd' || c == 'i')
-		return(ft_printf_nbr(va_arg(ap, int)));
+		return (ft_printf_nbr(va_arg(ap, int)));
 	else if (c == 'u')
-		return(ft_printf_uint(va_arg(ap, unsigned int)));
+		return (ft_printf_uint(va_arg(ap, unsigned int)));
 	else if (c == 'x' || c == 'X')
-		return(ft_printf_hex(va_arg(ap, unsigned int), c));
+		return (ft_printf_hex(va_arg(ap, unsigned int), c));
 	else if (c == '%')
-		return(write(1, &c, 1));
+		return (write(1, &c, 1));
 	else
-		return (0);
+		return (-1);
 }
 
 int	ft_printf(const char *content, ...)
@@ -56,6 +42,7 @@ int	ft_printf(const char *content, ...)
 	va_list	ap;
 	int		i;
 	int		count_args;
+	int		temp;
 
 	va_start(ap, content);
 	i = 0;
@@ -63,14 +50,12 @@ int	ft_printf(const char *content, ...)
 	while (content[i])
 	{
 		if (content[i] == '%')
-		{
-			i++;
-			// if (content[i] == '%') // 是否要定义当个 “&” 出现在末尾的现象？
-			// 	return (0);
-			count_args += output(ap, content[i]);
-		}
+			temp = output(ap, content[++i]);
 		else
-			count_args += write(1, &content[i], 1);
+			temp = write(1, &content[i], 1);
+		if (temp < 0)
+			return (-1);
+		count_args += temp;
 		i++;
 	}
 	va_end(ap);
@@ -80,8 +65,11 @@ int	ft_printf(const char *content, ...)
 /* int	main(void)
 {
 	char	*z = "d";
+	// int		a = ft_printf("\001\002\007\v\010\f\r\n");
+	int		b = printf("\001\002\007\v\010\f\r\n");
 
-	ft_printf("\001\002\007\v\010\f\r\n");
-	printf("\001\002\007\v\010\f\r\n"); //warning: incomplete format specifier [-Wformat]
+	// printf("%d\n", a);
+	printf("%d\n", b);
+	// printf("\001\002\007\v\010\f\r\n");
 	return (0);
 } */

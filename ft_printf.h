@@ -6,7 +6,7 @@
 /*   By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 16:59:28 by mezhang           #+#    #+#             */
-/*   Updated: 2025/07/16 13:36:55 by mezhang          ###   ########.fr       */
+/*   Updated: 2025/07/16 16:51:24 by mezhang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 # include <unistd.h>
+# include <limits.h>
 
 int		ft_printf(const char *content, ...);
 size_t	ft_strlen(const char *s);
