@@ -6,7 +6,7 @@
 /*   By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 18:43:13 by mezhang           #+#    #+#             */
-/*   Updated: 2025/07/16 23:44:37 by mezhang          ###   ########.fr       */
+/*   Updated: 2025/07/24 10:00:06 by mezhang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ int	ft_printf_ptr(void *ptr)
 	int			count;
 	uintptr_t	address;
 
+	if (!ptr)
+	{
+		return (ft_printf_str(NULLPTR));
+	}
 	i = 0;
 	if (write(1, "0x", 2) < 0)
 		return (-1);
@@ -58,16 +62,3 @@ int	ft_printf_ptr(void *ptr)
 	i += count;
 	return (i);
 }
-
-/* int	main(void)
-{
-	char	*z = "";
-
-	// ft_printf(z);
-	// printf("%s", "2");
-	ft_printf("%p", z);
-	printf("\n%d", ft_printf(" %p", z));
-	int a = printf("\n%p", z);
-	printf("\n%d", a);
-	return (0);
-} */

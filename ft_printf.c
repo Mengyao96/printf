@@ -6,7 +6,7 @@
 /*   By: mezhang <mezhang@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 18:13:06 by mezhang           #+#    #+#             */
-/*   Updated: 2025/07/16 23:41:52 by mezhang          ###   ########.fr       */
+/*   Updated: 2025/07/24 13:02:38 by mezhang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ int	ft_printf(const char *content, ...)
 	while (content[i])
 	{
 		if (content[i] == '%')
+		{
+			if (content[i + 1] == '\0')
+				break ;
 			temp = output(ap, content[++i]);
+		}
 		else
 			temp = write(1, &content[i], 1);
 		if (temp < 0)
@@ -62,14 +66,19 @@ int	ft_printf(const char *content, ...)
 	return (count_args);
 }
 
+// pointer test
+
 /* int	main(void)
 {
-	char	*z = "d";
-	// int		a = ft_printf("\001\002\007\v\010\f\r\n");
-	int		b = printf("\001\002\007\v\010\f\r\n");
+	char	*z = NULL;
 
-	// printf("%d\n", a);
-	printf("%d\n", b);
-	// printf("\001\002\007\v\010\f\r\n");
+	// ft_printf(z);
+	// printf("%s", "2");
+	int b = ft_printf("%p\n", z);
+	int a = printf("%p\n", z);
+
+	printf("\n");
+	printf("\n%d+", b);
+	printf("\n%d", a);
 	return (0);
 } */
